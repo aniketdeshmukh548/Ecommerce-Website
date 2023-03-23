@@ -1,0 +1,20 @@
+.header{
+    text-align: center;
+    margin:0;
+    padding:0px;
+    padding-bottom:30px;
+    background:#777;
+    color:rgb(243, 236, 236);
+}
+.header h4{
+    padding: 40px;
+    font-size: 100px;
+}
+h4{
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
