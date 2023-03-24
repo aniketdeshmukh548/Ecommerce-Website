@@ -5,7 +5,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Cartbtn from '../Button/CartButton';
 import { NavLink } from 'react-bootstrap';
-import Header from './header';
 const NavBar=(props)=>{
     return(
         <>

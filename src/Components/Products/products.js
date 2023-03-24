@@ -45,7 +45,7 @@ const Productsdata = (props) => {
   
    return (
         <div className="row p-0 m-0">
-          <h2 className="bg-dark text-light p-2 mt-2 mb-2 text-center">Products</h2>
+          <h2 className="bg-white text-dark p-2 mt-2 mb-2 text-center">Products</h2>
           {productsArr.map((products) => {
             return (
                 <Fragment>
