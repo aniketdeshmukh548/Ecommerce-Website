@@ -5,11 +5,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Cartbtn from '../Button/CartButton';
 import { NavLink } from 'react-bootstrap';
+import Header from './header';
 const NavBar=(props)=>{
     return(
+        <>
         <Navbar bg="dark" expand="lg" variant='dark'>
       <Container>
-        <Navbar.Brand href="/home">E-Commerce Website</Navbar.Brand>
+        <Navbar.Brand href="/store">E-Commerce Website</Navbar.Brand>
         <Nav className="me-auto">
             <NavLink href='/home' className={({isActive})=>
            isActive ? classes.active :undefined
@@ -24,6 +26,7 @@ const NavBar=(props)=>{
             </Nav>
       </Container>
     </Navbar>
+    </>
     )
 }
 
