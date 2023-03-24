@@ -4,6 +4,18 @@ import Header from './Components/NavBar/header';
 import NavBar from './Components/NavBar/Navbar';
 import Productsdata from '../src/Components/Products/products'
 import CartProvider from './Store/CartProvider';
+import { createBrowserRouter,RouterProvider } from 'react-router-dom';
+import Aboutpage from './Pages/About';
+import Homepage from './Pages/Home';
+import Storepage from './Pages/Store';
+import Errorpage from './Pages/Error';
+import Footer from './Components/Footer/Footer';
+
+const router=createBrowserRouter([
+  {path:'/about', element:<Aboutpage />,errorElement:<Errorpage />},
+  {path:'/home',element:<Homepage />},
+  {path:'/store',element:<Storepage />}
+])
 
 function App() {
   const [cartshow,setcartshow]=useState(false)
@@ -18,8 +30,7 @@ function App() {
     <CartProvider>
       <NavBar onshowcart={showcartHandler}/>
       {cartshow && <CartElem onClose={hidecartHandler} />}
-      <Header />
-      <Productsdata />
+      <RouterProvider router={router}/>
     </CartProvider>
   );
 }
