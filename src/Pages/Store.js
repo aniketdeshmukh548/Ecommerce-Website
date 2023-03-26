@@ -1,16 +1,16 @@
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/NavBar/header";
-import React,{useState} from "react";
+import React,{useCallback, useEffect, useState} from "react";
 import Movies from "../Components/Products/Movies";
 import Productsdata from "../Components/Products/products";
-import { Button } from "react-bootstrap";
 
 
 const Storepage=(props)=>{
     const [movies,setMovies]=useState([])
     const [isLoading,setIsLoading]=useState(false)
     const [error,setError]=useState(null)
-   async function FetchMoviesHandler(){
+    
+   const FetchMoviesHandler =useCallback(async ()=>{
         setIsLoading(true)
         setError(null)
         try{
@@ -35,7 +35,10 @@ const Storepage=(props)=>{
             
         }
         setIsLoading(false)
-    }
+    },[])
+    useEffect(()=>{
+        FetchMoviesHandler()
+    },[FetchMoviesHandler])
     const datamovies=movies.map((item)=>{
         return(
 
@@ -43,7 +46,7 @@ const Storepage=(props)=>{
         )
     })
 
-    let Content=<p>Found No Movies</p>
+    let Content=<p class="text-center font-weight-bold" >Found No Movies</p>
     if(datamovies.length>0){
         Content=datamovies
     }
@@ -63,8 +66,10 @@ const Storepage=(props)=>{
         {!isLoading && error && <p>{error}</p>}
         {isLoading && <p>Loading...</p>} */}
         <section>{Content}</section>
-        <div class="text-center">
-  <Button type="button" class="btn btn-primary" onClick={FetchMoviesHandler}>Fetch Movies</Button>
+        <div class="text-center bg-success">
+        <button type="button" class="btn btn-danger"size="lg" font-size="16px" onClick={FetchMoviesHandler} >
+          Fetch Movies
+        </button>
 </div>
         <Footer />
         </>
