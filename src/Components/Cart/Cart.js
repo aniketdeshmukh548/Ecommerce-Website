@@ -3,8 +3,9 @@ import CartContext from "../../Store/cart-context";
 import Modal from "../../UI/Modal/Modal";
 import classes from './Cart.module.css'
 const CartElem = (props) => {
+  useContext(CartContext)
     const addToCartHandler=(props)=>{
-        
+        CartContext.addItem(props.item)
     }
   return (
     <Modal onClose={props.onClose}>

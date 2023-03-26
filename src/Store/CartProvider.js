@@ -5,18 +5,63 @@ const defaultCartstate={
   items:[],
   totalAmount:0,
 }
-const cartReducer=(state,action)=>{
-  if(action.type='ADD'){
-     const updatedItems=state.items.concat(action.item) ;
-     const updatedTotalamount=state.totalAmount+action.item.price*action.item.amount;
-     return{
-      items:updatedItems,
-      totalAmount:updatedTotalamount
-     }
+const cartReducer = (state, action) => {
+  if(action.type === 'ADD')
+  {
+      const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount
+      // const updatedItems = state.items.concat(action.item)
+
+      const exsistingCartItemsIndex = state.items.findIndex(
+          (item) => item.id === action.item.id);
+          
+          const existingcartitem = state.items[exsistingCartItemsIndex]
+          let updatedItems;
+    
+          if(existingcartitem) {
+            const updatedItem = {
+              ...existingcartitem,
+              amount: existingcartitem.amount + action.item.amount
+            }
+    
+            updatedItems = [...state.items];
+            updatedItems[exsistingCartItemsIndex] = updatedItem;
+          }
+          else {
+            updatedItems = state.items.concat(action.item);
+          }
+
+      return {
+          items: updatedItems,
+          totalAmount: updatedTotalAmount
+      }
   }
-  return(
-    defaultCartstate
-  )
+
+  if(action.type === 'REMOVE')
+  {
+  const exsistingCartItemsIndex = state.items.findIndex(
+      (item) => item.id === action.id
+    );
+    const existingcartitem = state.items[exsistingCartItemsIndex];
+    const updatedtotalAmount = state.totalAmount - existingcartitem.price;
+
+    let updatedItems;
+    if(existingcartitem.amount === 1)
+    {
+      updatedItems = state.items.filter(item => item.id !== action.id)
+    }
+    else {
+      const updatedItem = {...existingcartitem, amount: existingcartitem.amount - 1}
+      updatedItems = [...state.items];
+      updatedItems[exsistingCartItemsIndex] = updatedItem;
+    }
+
+    return {
+      items : updatedItems,
+      totalAmount: updatedtotalAmount
+    }
+  }
+
+  return defaultCartstate;
 }
 const CartProvider = (props) => {
   const [cartState,dispatchcartAction]=useReducer(cartReducer,defaultCartstate)

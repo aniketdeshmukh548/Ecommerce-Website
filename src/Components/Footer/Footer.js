@@ -7,10 +7,10 @@ const Footer = () => {
     The Generics
     </span><button type="button" class="btn text-white bg-dark me-2"><a href='https://www.youtube.com'>YouTube</a>
         <i class="fab fa-youtube"></i>
-        </button><button type="button" class="btn text-white bg-dark me-2">facebook<a href='https://www.facebook.com'></a>
+        </button><button type="button" class="btn text-white bg-dark me-2"><a href='https://www.facebook.com'>facebook</a>
         <i class="fab fa-facebook-f"></i>
         </button>
-        <button type="button" class="btn text-white bg-dark me-2">Spotify<a href='https://www.spotify.com'></a>
+        <button type="button" class="btn text-white bg-dark me-2"><a href='https://www.spotify.com'>Spotify</a>
         <i class="fab fa-facebook-f"></i>
         </button>
 </div>

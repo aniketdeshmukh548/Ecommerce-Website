@@ -22,7 +22,6 @@ function App() {
   const hidecartHandler=()=>{
     setcartshow(false)
   }
-
   return (
     <CartProvider>
       <NavBar onshowcart={showcartHandler}/>
