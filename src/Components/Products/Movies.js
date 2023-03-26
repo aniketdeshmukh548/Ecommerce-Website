@@ -13,7 +13,7 @@ const Movies=(props)=>{
             <th scope="col">Release Date</th>
           </tr>
           <tr>
-            <th scope="col">{props.Productsdata.id}</th>
+            <th scope="col">{props.Productsdata.EpisodeNumber}</th>
             <th scope="col">{props.Productsdata.title}</th>
             <th scope="col">{props.Productsdata.opening}</th>
             <th scope="col">{props.Productsdata.releaseDate}</th>
