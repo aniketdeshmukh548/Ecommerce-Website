@@ -7,11 +7,13 @@ import Aboutpage from './Pages/About';
 import Homepage from './Pages/Home';
 import Storepage from './Pages/Store';
 import Errorpage from './Pages/Error';
+import Contact from './Pages/ContactUs';
 
 const router=createBrowserRouter([
   {path:'/about', element:<Aboutpage />,errorElement:<Errorpage />},
   {path:'/home',element:<Homepage />},
-  {path:'/store',element:<Storepage />}
+  {path:'/store',element:<Storepage />},
+  {path:'/contact',element:<Contact />}
 ])
 
 function App() {
