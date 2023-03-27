@@ -18,6 +18,9 @@ const NavBar=(props)=>{
             <NavLink href='/store' className={({isActive})=>
            isActive ? classes.active :undefined
         }>STORE</NavLink>
+        <NavLink href='/product' className={({isActive})=>
+           isActive ? classes.active :undefined
+        }>PRODUCTS</NavLink>
            <NavLink href='/about' className={({isActive})=>
            isActive ? classes.active :undefined
         }>ABOUT</NavLink>

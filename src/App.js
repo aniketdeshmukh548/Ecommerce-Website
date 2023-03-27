@@ -8,12 +8,20 @@ import Homepage from './Pages/Home';
 import Storepage from './Pages/Store';
 import Errorpage from './Pages/Error';
 import Contact from './Pages/ContactUs';
+import ProductPage from './Pages/ProductsPage';
+import ProdDetail from './Pages/ProdDetail';
 
 const router=createBrowserRouter([
-  {path:'/about', element:<Aboutpage />,errorElement:<Errorpage />},
-  {path:'/home',element:<Homepage />},
-  {path:'/store',element:<Storepage />},
-  {path:'/contact',element:<Contact />}
+  {
+    path:'/',errorElement:<Errorpage />,
+    children:[{path:'/about', element:<Aboutpage />,errorElement:<Errorpage />},
+    {index:true,path:'/home',element:<Homepage />},
+    {path:'/store',element:<Storepage />},
+    {path:'/contact',element:<Contact />},
+    {path:'/product',element:<ProductPage />},
+    {path:'/product/:prodID',element:<ProdDetail />}]
+  }
+  
 ])
 
 function App() {

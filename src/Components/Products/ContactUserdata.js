@@ -1,11 +1,11 @@
-import { useState } from "react";
+import {useCallback, useState } from "react";
 import Contact from "../../Pages/ContactUs"
 
 
 const ContactUserdata=(props)=>{
     const [error,setError]=useState(null)
 
-    const userdataHandler=useCallback(async ()=>{
+    const userdataHandler=useCallback(async (user)=>{
         try {
             const response = await fetch('https://react-ecommerce-b1f5c-default-rtdb.firebaseio.com/contact.json', {
               method: 'POST',
