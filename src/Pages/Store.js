@@ -4,7 +4,9 @@ import React,{useCallback, useEffect, useState} from "react";
 import Movies from "../Components/Products/Movies";
 import Productsdata from "../Components/Products/products";
 import AddMovie from "../Components/Products/AddMovie";
+import DeleteMovie from "../Components/Products/DeleteMovie";
 
+let timer;
 
 const Storepage=(props)=>{
     const [movies,setMovies]=useState([])
@@ -50,7 +52,6 @@ const Storepage=(props)=>{
     useEffect(()=>{
         FetchMoviesHandler()
     },[FetchMoviesHandler])
-
     async function addMovieHandler(movie) {
         const response= await fetch('https://react-ecommerce-b1f5c-default-rtdb.firebaseio.com/movies.json',{
             method:'POST',
@@ -62,11 +63,40 @@ const Storepage=(props)=>{
         const data=await response.json();
         console.log(data)
       }
+      const DeleteDataHandler = useCallback(async (event) => {
+        try {
+          const response = await fetch(`https://react-ecommerce-b1f5c-default-rtdb.firebaseio.com/movies/${event.target.value}.json`, {
+            method: 'DELETE',
+            body: JSON.stringify(event.target.value),
+            headers: {
+              'Content-type': 'application/json'
+            }
+          });
+          const data = await response.json();
+          console.log(data);
+          FetchMoviesHandler();
+        }
+        catch (error) {
+          setError(error.message);
+        }
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 500);
+        setIsLoading(true)
+      },[FetchMoviesHandler])
+
+
+      const CancelHandler = () => {
+        clearTimeout(timer)
+        console.log('Refresh Canced')
+      }
 
     const datamovies=movies.map((item)=>{
         return(
-
+            <>
             <Movies Productsdata={item} key={item.id} />
+            <DeleteMovie deleteData={DeleteDataHandler} />
+            </>
         )
     })
 
@@ -75,7 +105,10 @@ const Storepage=(props)=>{
         Content=datamovies
     }
     if(error){
-        Content=<p>{error}</p>
+        Content=<p>{error}
+        <button className="btn btn-warning m-2" onClick={CancelHandler}>
+              Cancel
+            </button></p>
     }
     if(isLoading){
         Content=<p>Loading...</p>
@@ -85,10 +118,6 @@ const Storepage=(props)=>{
         <>
         <Header />
         <Productsdata />
-        {/* {!isLoading && datamovies.length>0 && datamovies}
-        {!isLoading && datamovies.length===0 && !error && <p>Found No Movies..</p>}
-        {!isLoading && error && <p>{error}</p>}
-        {isLoading && <p>Loading...</p>} */}
         <AddMovie onAddMovie={addMovieHandler} />
         <section>{Content}</section>
         <div class="text-center bg-success">

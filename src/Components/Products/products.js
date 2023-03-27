@@ -1,4 +1,4 @@
-import React,{Fragment, useContext} from 'react'
+import React,{Fragment} from 'react'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
@@ -30,17 +30,27 @@ const productsArr = [ {
   }
   ];
 const Productsdata = (props) => {
-  const cartCtx=useContext(CartContext)
+  //const cartCtx=useContext(CartContext)
     const addToCartHandler=(props)=>{
-        cartCtx.addItem({
-            key: props.id,
-            id: props.id,
-            title: props.title,
-            price: props.price,
-            image: props.imageUrl,
-            amount: 1
-          })
-          props.addtocart(props.id,props.title,props.price,props.imageUrl)     
+        // cartCtx.addItem({
+        //     key: props.id,
+        //     id: props.id,
+        //     title: props.title,
+        //     price: props.price,
+        //     image: props.imageUrl,
+        //     amount: 1
+        //   })
+        
+          const addingintocart=(props)=>{
+            CartContext.addItem(props.item)
+            // key: props.id,
+            // id: props.id,
+            // title: props.title,
+            // price: props.price,
+            // image: props.imageUrl,
+            // amount: 1
+          }
+          props.addtocart(addingintocart)     
     }
    return (
         <div className="row p-0 m-0">
