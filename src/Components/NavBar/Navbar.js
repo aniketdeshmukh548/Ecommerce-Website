@@ -27,6 +27,9 @@ const NavBar=(props)=>{
         <NavLink href='/contact' className={({isActive})=>
            isActive ? classes.active :undefined
         }>CONTACT US</NavLink>
+        <NavLink href='/login' className={({isActive})=>
+           isActive ? classes.active :undefined
+        }>LogIn</NavLink>
             <Cartbtn onClick={props.onshowcart}/>
             </Nav>
       </Container>

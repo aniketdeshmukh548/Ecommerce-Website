@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 const PRODUCTS=[
     {id:'p1',title:'Product 1'},
     {id:'p2',title:'Product 2'},
-    {id:'p3',title:'Product 3'}
+    {id:'p3',title:'Product 3'},{ 
+  id:1,    
+  title: 'Colors',      
+  price: 100,     
+  imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',     
+  }
 ]
 
 
