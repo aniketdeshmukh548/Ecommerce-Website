@@ -10,7 +10,7 @@ const NavBar=(props)=>{
         <>
         <Navbar bg="dark" expand="lg" variant='dark'>
       <Container>
-        <Navbar.Brand href="/store">E-Commerce Website</Navbar.Brand>
+        <Navbar.Brand href="/mainvaigation">E-Commerce Website</Navbar.Brand>
         <Nav className="me-auto">
             <NavLink href='/home' className={({isActive})=>
            isActive ? classes.active :undefined
@@ -27,9 +27,6 @@ const NavBar=(props)=>{
         <NavLink href='/contact' className={({isActive})=>
            isActive ? classes.active :undefined
         }>CONTACT US</NavLink>
-        <NavLink href='/login' className={({isActive})=>
-           isActive ? classes.active :undefined
-        }>LogIn</NavLink>
             <Cartbtn onClick={props.onshowcart}/>
             </Nav>
       </Container>

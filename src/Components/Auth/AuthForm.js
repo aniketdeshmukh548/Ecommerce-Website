@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { useState, useRef } from 'react';
+import CartContext from '../../Store/cart-context';
 
 import classes from './AuthForm.module.css';
 
@@ -7,6 +9,7 @@ const AuthForm = () => {
   const passwordInputRef = useRef();
   const [isLoading,setIsloading]=useState(false)
   const [isLogin, setIsLogin] = useState(true);
+  const authCtx=useContext(CartContext)
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -48,7 +51,7 @@ const AuthForm = () => {
           })
         }
       }).then(data=>{
-        console.log(data)
+        authCtx.login(data.idToken)
       }).catch(err=>{
         alert(err.message)
       })
