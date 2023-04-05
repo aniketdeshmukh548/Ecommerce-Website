@@ -29,7 +29,6 @@ const MainNavigation = () => {
           )}
             <li>
             <button onClick={LogoutHandler}>Logout</button>
-            {console.log('logout')}
           </li>
         </ul>
       </nav>
