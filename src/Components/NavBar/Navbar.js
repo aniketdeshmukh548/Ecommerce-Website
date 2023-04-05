@@ -19,24 +19,24 @@ const NavBar=(props)=>{
       <Container>
         <Navbar.Brand href="/mainvaigation">E-Commerce Website</Navbar.Brand>
         <Nav className="me-auto">
-            <NavLink href='/home' className={({isActive})=>
+            {authCtx.isLoggedIn && <NavLink href='/home' className={({isActive})=>
            isActive ? classes.active :undefined
-        }>HOME</NavLink>
-            <NavLink href='/store' className={({isActive})=>
+        }>HOME</NavLink>}
+            {isLoggedIn && <NavLink href='/store' className={({isActive})=>
            isActive ? classes.active :undefined
-        }>STORE</NavLink>
-        <NavLink href='/product' className={({isActive})=>
+        }>STORE</NavLink>}
+        {isLoggedIn && <NavLink href='/product' className={({isActive})=>
            isActive ? classes.active :undefined
-        }>PRODUCTS</NavLink>
+        }>PRODUCTS</NavLink>}
            <NavLink href='/about' className={({isActive})=>
            isActive ? classes.active :undefined
         }>ABOUT</NavLink>
-        <NavLink href='/contact' className={({isActive})=>
+        {isLoggedIn && <NavLink href='/contact' className={({isActive})=>
            isActive ? classes.active :undefined
-        }>CONTACT US</NavLink>
+        }>CONTACT US</NavLink>}
         {!authCtx.isLoggedIn && <NavLink href='/auth' className={({isActive})=>
            isActive ? classes.active :undefined
-        }>LOGIN</NavLink>}
+        }>Login</NavLink>}
         {isLoggedIn && <NavLink href='/profile' className={({isActive})=>
            isActive ? classes.active :undefined
         }>Profile </NavLink>}
