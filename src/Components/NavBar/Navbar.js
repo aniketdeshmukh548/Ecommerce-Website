@@ -19,10 +19,10 @@ const NavBar=(props)=>{
       <Container>
         <Navbar.Brand href="/mainvaigation">E-Commerce Website</Navbar.Brand>
         <Nav className="me-auto">
-            {authCtx.isLoggedIn && <NavLink href='/home' className={({isActive})=>
+            {isLoggedIn && <NavLink href='/home' className={({isActive})=>
            isActive ? classes.active :undefined
         }>HOME</NavLink>}
-            {isLoggedIn && <NavLink href='/store' className={({isActive})=>
+        {isLoggedIn && <NavLink href='/store' className={({isActive})=>
            isActive ? classes.active :undefined
         }>STORE</NavLink>}
         {isLoggedIn && <NavLink href='/product' className={({isActive})=>
@@ -36,7 +36,7 @@ const NavBar=(props)=>{
         }>CONTACT US</NavLink>}
         {!authCtx.isLoggedIn && <NavLink href='/auth' className={({isActive})=>
            isActive ? classes.active :undefined
-        }>Login</NavLink>}
+        }>LOGIN</NavLink>}
         {isLoggedIn && <NavLink href='/profile' className={({isActive})=>
            isActive ? classes.active :undefined
         }>Profile </NavLink>}

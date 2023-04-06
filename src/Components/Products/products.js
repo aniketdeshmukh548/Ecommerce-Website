@@ -50,7 +50,7 @@ const Productsdata = (props) => {
             // image: props.imageUrl,
             // amount: 1
           }
-          props.addtocart(addingintocart)     
+          props.addtocart(addingintocart)  
     }
    return (
         <div className="row p-0 m-0">

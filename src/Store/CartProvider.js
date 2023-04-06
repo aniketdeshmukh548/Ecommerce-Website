@@ -64,33 +64,34 @@ const cartReducer = (state, action) => {
   return defaultCartstate;
 }
 
-const calremTime=(exipirationTime)=>{
-  const currTime=new Date().getTime();
-  const adjustedexpirtime=new Date(exipirationTime).getTime();
-  const remainingtime=adjustedexpirtime-currTime;
-  return remainingtime;
-}
-const retrivestoredToken=()=>{
-  const storedToken = localStorage.getItem('token');
-  const storedexpirDate=localStorage.getItem("exipirationTime");
-  const remainingtime=calremTime(storedexpirDate)
-  if(remainingtime<=3600){
-    localStorage.removeItem('token')
-    localStorage.removeItem("exipirationTime")
-    return null;
-  }
-  return {
-    token:storedToken,
-    duration:remainingtime,
-  };
-}
+// const calremTime=(exipirationTime)=>{
+//   const currTime=new Date().getTime();
+//   const adjustedexpirtime=new Date(exipirationTime).getTime();
+//   const remainingtime=adjustedexpirtime-currTime;
+//   return remainingtime;
+// }
+// const retrivestoredToken=()=>{
+//   const storedToken = localStorage.getItem('token');
+//   const storedexpirDate=localStorage.getItem("exipirationTime");
+//   const remainingtime=calremTime(storedexpirDate)
+//   if(remainingtime<=3600){
+//     localStorage.removeItem('token')
+//     localStorage.removeItem("exipirationTime")
+//     return null;
+//   }
+//   return {
+//     token:storedToken,
+//     duration:remainingtime,
+//   };
+// }
 const CartProvider = (props) => {
     const [cartState,dispatchcartAction]=useReducer(cartReducer,defaultCartstate);
-    const tokenData =retrivestoredToken();
-    let initialToken;
-    if(initialToken){
-      initialToken = tokenData.token;
-    }
+    // const tokenData =retrivestoredToken();
+    // let initialToken;
+    // if(initialToken){
+    //   initialToken = tokenData.token;
+    // }
+    const initialToken=localStorage.getItem('token')
     const [token, setToken] = useState(initialToken)
 
     const userLoggedIn = !!token;
@@ -98,24 +99,24 @@ const CartProvider = (props) => {
   const LogoutHandler =useCallback( () => {
       setToken(null)
       localStorage.removeItem('token')
-      localStorage.removeItem('exipirationTime')
-      if(logoutTimer){
-        clearTimeout(logoutTimer)
-      }
+      // localStorage.removeItem('exipirationTime')
+      // if(logoutTimer){
+      //   clearTimeout(logoutTimer)
+      // }
   },[])
   const LoginHandler = (token,exipirationTime) => {
     setToken(token)
     localStorage.setItem('token',token)
-    const remainingtime=calremTime(exipirationTime)
-    logoutTimer=setTimeout(LogoutHandler,remainingtime)
-    localStorage.setItem('exipirationTime',exipirationTime)
+    // const remainingtime=calremTime(exipirationTime)
+    // logoutTimer=setTimeout(LogoutHandler,remainingtime)
+    // localStorage.setItem('exipirationTime',exipirationTime)
 }
-useEffect(()=>{
-  if(tokenData){
-    console.log(tokenData.duration)
-    logoutTimer=setTimeout(LogoutHandler,tokenData.duration)
-  }
-},[tokenData,LogoutHandler])
+// useEffect(()=>{
+//   if(tokenData){
+//     console.log(tokenData.duration)
+//     logoutTimer=setTimeout(LogoutHandler,tokenData.duration)
+//   }
+// },[tokenData,LogoutHandler])
 
   const additemtoCart=(item)=>{
     dispatchcartAction({type:'ADD',item:item})
