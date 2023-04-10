@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CartContext from '../../Store/cart-context';
+import { useContext } from 'react';
 const productsArr = [ { 
   id:1,    
   title: 'Colors',      
@@ -30,27 +31,49 @@ const productsArr = [ {
   }
   ];
 const Productsdata = (props) => {
+  const userlocalid = localStorage.getItem('userlocalid')
+  const cartCtx=useContext(CartContext)
+  //const price = `${props.price.toFixed(2)}`;
   //const cartCtx=useContext(CartContext)
     const addToCartHandler=(props)=>{
-        // cartCtx.addItem({
-        //     key: props.id,
-        //     id: props.id,
-        //     title: props.title,
-        //     price: props.price,
-        //     image: props.imageUrl,
-        //     amount: 1
-        //   })
+        cartCtx.addItem({
+            key: props.id,
+            id: props.id,
+            title: props.title,
+            price: props.price,
+            image: props.imageUrl,
+            amount: 1
+          })
         
-          const addingintocart=(props)=>{
-            CartContext.addItem(props.item)
-            // key: props.id,
-            // id: props.id,
-            // title: props.title,
-            // price: props.price,
-            // image: props.imageUrl,
-            // amount: 1
-          }
-          props.addtocart(addingintocart)  
+          // const addingintocart=(props)=>{
+          //   CartContext.addItem(props.item)
+          //   // key: props.id,
+          //   // id: props.id,
+          //   // title: props.title,
+          //   // price: props.price,
+          //   // image: props.imageUrl,
+          //   // amount: 1
+          // }
+          //props.addtocart(addingintocart)  
+
+          fetch(`https://crudcrud.com/api/c8063c327d1240818eab7b4b36b4eb53/cart${userlocalid}`,
+          {
+            method: 'POST',
+            body: JSON.stringify({
+              key: props.id,
+              id: props.id,
+              title: props.title,
+              price: props.price,
+              image: props.imageUrl,
+              amount: 1
+            }),
+            headers: {
+              "Content-Type": 'application/json'
+            }
+          })
+          .then(res => res.json())
+          .then(data => console.log(data))
+              
     }
    return (
         <div className="row p-0 m-0">

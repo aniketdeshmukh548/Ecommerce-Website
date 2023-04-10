@@ -39,7 +39,7 @@ const NavBar=(props)=>{
         }>LOGIN</NavLink>}
         {isLoggedIn && <NavLink href='/profile' className={({isActive})=>
            isActive ? classes.active :undefined
-        }>Profile </NavLink>}
+        }>PROFILE</NavLink>}
         {isLoggedIn && <li>
             <button type="button" class="btn btn-danger" onClick={LogoutHandler}>Logout</button>
           </li>}

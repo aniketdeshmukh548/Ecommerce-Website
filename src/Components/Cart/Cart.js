@@ -4,20 +4,18 @@ import Modal from "../../UI/Modal/Modal";
 import Productsdata from "../Products/products";
 import classes from './Cart.module.css'
 const CartElem = (props) => {
-  // useContext(CartContext)
-  //   const addToCartHandler=(props)=>{
-  //       CartContext.addItem(props.item)
-  //   }
   const cartCtx=useContext(CartContext)
-    const addToCartHandler=(props)=>{
-      cartCtx.addItem({
-          key: props.id,
-          id: props.id,
-          title: props.title,
-          price: props.price,
-          image: props.imageUrl,
-          amount: 1
-        })}
+    const addToCartHandler=(item)=>{
+      cartCtx.addItem({...item,amount:1})
+      // cartCtx.addItem({
+      //     key: props.id,
+      //     id: props.id,
+      //     title: props.title,
+      //     price: props.price,
+      //     image: props.imageUrl,
+      //     amount: 1
+      //   })
+      }
         
   return (
     <Modal onClose={props.onClose}>

@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import CartElem from './Components/Cart/Cart';
 import NavBar from './Components/NavBar/Navbar';
 import CartProvider from './Store/CartProvider';

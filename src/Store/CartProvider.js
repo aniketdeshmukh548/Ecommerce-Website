@@ -64,12 +64,12 @@ const cartReducer = (state, action) => {
   return defaultCartstate;
 }
 
-// const calremTime=(exipirationTime)=>{
-//   const currTime=new Date().getTime();
-//   const adjustedexpirtime=new Date(exipirationTime).getTime();
-//   const remainingtime=adjustedexpirtime-currTime;
-//   return remainingtime;
-// }
+const calremTime=(exipirationTime)=>{
+  const currTime=new Date().getTime();
+  const adjustedexpirtime=new Date(exipirationTime).getTime();
+  const remainingtime=adjustedexpirtime-currTime;
+  return remainingtime;
+}
 // const retrivestoredToken=()=>{
 //   const storedToken = localStorage.getItem('token');
 //   const storedexpirDate=localStorage.getItem("exipirationTime");
@@ -107,7 +107,8 @@ const CartProvider = (props) => {
   const LoginHandler = (token,exipirationTime) => {
     setToken(token)
     localStorage.setItem('token',token)
-    // const remainingtime=calremTime(exipirationTime)
+    const remainingtime=calremTime(exipirationTime)
+    setTimeout(LogoutHandler,remainingtime)
     // logoutTimer=setTimeout(LogoutHandler,remainingtime)
     // localStorage.setItem('exipirationTime',exipirationTime)
 }
