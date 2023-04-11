@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
+//import {lazy,Suspense} from 'react'
 import CartElem from './Components/Cart/Cart';
 import NavBar from './Components/NavBar/Navbar';
 import CartProvider from './Store/CartProvider';
-import { createBrowserRouter,RouterProvider } from 'react-router-dom';
+import { createBrowserRouter,RouterProvider} from 'react-router-dom';
 import Aboutpage from './Pages/About';
 import Homepage from './Pages/Home';
 import Storepage from './Pages/Store';
@@ -15,13 +16,20 @@ import ProfileForm from './Components/Auth/ProfileForm';
 import AuthForm from './Components/Auth/AuthForm';
 import StartingPageContent from '../src/Components/StartingPage/StartingPageContent';
 
+//const Aboutpage=lazy(()=>import('./Pages/About'));
+//const Contact=lazy(()=>import('./Pages/ContactUs'))
+
 const router=createBrowserRouter([
   {
-    path:'/',errorElement:<Errorpage />,
-    children:[{path:'/about', element:<Aboutpage />,errorElement:<Errorpage />},
+    path:'/',
+    children:[
+    {path:'/about', element:<Aboutpage />,errorElement:<Errorpage />},
+   // {path:'/about', element:<Suspense fallback={<p>Loading...</p>}><Aboutpage /></Suspense>,errorElement:<Errorpage />
+   // ,loader:({meta})=>import('./Pages/About').then(module=>module.loader({meta}))},
     {index:true,path:'/home',element:<Homepage />},
     {path:'/store',element:<Storepage />},
     {path:'/contact',element:<Contact />},
+    //{path:'/contact',element:<Suspense><Contact /></Suspense>,loader:()=>import('./Pages/ContactUs').then(module=>module.loader()),},
     {path:'/mainvaigation',element:<MainNavigation />},
     {path:'/auth',element:<AuthForm />},
     {path:'/startpage',element:<StartingPageContent />},
@@ -29,8 +37,7 @@ const router=createBrowserRouter([
     {path:'/profile',element:<ProfileForm />},
     {path:'/product',element:<ProductPage />},
     {path:'/product/:prodID',element:<ProdDetail />}]
-  }
-
+  },
   
 ])
 function App() {
